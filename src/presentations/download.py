@@ -1,7 +1,8 @@
-from src.infrastructure.file_handler import S3FileHandler, CDNFileHandler
-
 import os
+
 import pandas as pd
+
+from src.infrastructure.file_handler import CDNFileHandler, S3FileHandler
 
 
 def download_csv_from_s3(bucket: str, key: str, output_path: str) -> pd.DataFrame:
@@ -33,7 +34,9 @@ def download_csv_from_s3(bucket: str, key: str, output_path: str) -> pd.DataFram
     return df
 
 
-def download_image_from_cdn(cdn_url: str, save_dir: str, image_key: str, image_path: str) -> None:
+def download_image_from_cdn(
+    cdn_url: str, save_dir: str, image_key: str, image_path: str
+) -> None:
     """
     CDN 이미지 다운로드
 

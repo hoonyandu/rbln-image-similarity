@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 
+
 class FileHandler(ABC):
     """파일 핸들러 인터페이스"""
 

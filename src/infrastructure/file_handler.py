@@ -1,11 +1,12 @@
-from src.domain.file_handler import FileHandler
+from io import BytesIO
+from typing import Any, Dict, List, Optional
 
 import boto3
 import botocore.config
-from io import BytesIO
-from typing import Optional, List, Dict, Any
-from requests import request
 from PIL import Image
+from requests import request
+
+from src.domain.file_handler import FileHandler
 
 
 class S3FileHandler(FileHandler):
@@ -13,14 +14,12 @@ class S3FileHandler(FileHandler):
         self.client_config = botocore.config.Config(
             max_pool_connections=32,
         )
-        self.s3 = boto3.client(
-            "s3", config=self.client_config
-        )
+        self.s3 = boto3.client("s3", config=self.client_config)
 
     def get_object_list(self, bucket: str, key: str) -> List[Dict[str, Any]]:
         objects = self.s3.list_objects_v2(Bucket=bucket, Prefix=key)
         return objects["Contents"]
-    
+
     def get_file_obj(self, bucket: str, key: str) -> BytesIO:
         obj = self.s3.get_object(Bucket=bucket, Key=key)
         return BytesIO(obj["Body"].read())
@@ -34,9 +33,10 @@ class S3FileHandler(FileHandler):
             Fileobj=file_obj,
         )
 
-        file_obj.seek(0) # Go to the start of the BytesIO object
+        file_obj.seek(0)  # Go to the start of the BytesIO object
 
         return file_obj
+
 
 class CDNFileHandler(FileHandler):
     def __init__(self, cdn_url: str) -> None:
@@ -47,7 +47,7 @@ class CDNFileHandler(FileHandler):
 
     def download_file_obj(self, key: str) -> Optional[BytesIO]:
         # download image from cdn url
-        cdn_url = f"{self.cdn_url}{key}"    
+        cdn_url = f"{self.cdn_url}{key}"
 
         response = request("GET", cdn_url)
         if response.status_code != 200:

@@ -1,9 +1,11 @@
-from __init__ import *
-
 import argparse
+
+from __init__ import *
 from tqdm import tqdm
 
-from src.presentations.download import download_csv_from_s3, download_image_from_cdn
+from src.presentations.download import (download_csv_from_s3,
+                                        download_image_from_cdn)
+
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -15,8 +17,11 @@ def get_args():
 
     return parser.parse_args()
 
+
 def main(args):
-    df = download_csv_from_s3(bucket=args.bucket, key=args.key, output_path=args.output_path)
+    df = download_csv_from_s3(
+        bucket=args.bucket, key=args.key, output_path=args.output_path
+    )
 
     if not os.path.exists(args.save_dir):
         os.makedirs(args.save_dir)
