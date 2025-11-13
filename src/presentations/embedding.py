@@ -1,5 +1,6 @@
 import torch
 
+
 def generate_clip_embeddings(model, processor, image):
     # image to tensor
     inputs = processor(images=image, return_tensors="pt")
@@ -10,7 +11,8 @@ def generate_clip_embeddings(model, processor, image):
         embedding = outputs.last_hidden_state.cpu().numpy()
 
     # Remove batch dimension
-    return embedding[0] # [1, 768]
+    return embedding[0]  # [1, 768]
+
 
 def generate_qwen25vl_embeddings(model, processor, image):
     # image to tensor
@@ -25,9 +27,10 @@ def generate_qwen25vl_embeddings(model, processor, image):
 
         # Convert to numpy and apply mean pooling over variable sequence dimension
         embedding = outputs.cpu().numpy()
-        embedding = embedding.mean(axis=0) # [3584, ]
+        embedding = embedding.mean(axis=0)  # [3584, ]
 
-    return embedding # [3584, ]
+    return embedding  # [3584, ]
+
 
 def generate_embeddings(model_type, model, processor, image):
     """
@@ -40,7 +43,7 @@ def generate_embeddings(model_type, model, processor, image):
     Returns:
         embedding: embedding
     """
-    
+
     if model_type == "clip":
         embedding = generate_clip_embeddings(model, processor, image)
     elif model_type == "qwen25vl":

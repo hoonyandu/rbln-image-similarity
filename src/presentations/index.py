@@ -1,6 +1,7 @@
 import faiss
 import numpy as np
 
+
 def create_faiss_index(embeddings, image_paths, index_path):
     dimension = len(embeddings[0])
     # L2 distance index
@@ -22,6 +23,7 @@ def create_faiss_index(embeddings, image_paths, index_path):
             f.write(image_path + "\n")
 
     return index
+
 
 def load_faiss_index(index_path):
     index = faiss.read_index(index_path)

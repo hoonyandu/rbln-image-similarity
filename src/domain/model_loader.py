@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 
+
 class ModelLoader(ABC):
     """모델 로더 인터페이스"""
 

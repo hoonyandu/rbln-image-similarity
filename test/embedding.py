@@ -1,10 +1,11 @@
-from __init__ import *
-
 import argparse
+
+from __init__ import *
 from PIL import Image
 from tqdm import tqdm
 
-from src.infrastructure.model_loader import RBLNCLIPVisionModelLoader, RBLNAutoModelLoader
+from src.infrastructure.model_loader import (RBLNAutoModelLoader,
+                                             RBLNCLIPVisionModelLoader)
 from src.presentations.embedding import generate_embeddings
 from src.presentations.index import create_faiss_index
 
@@ -20,12 +21,13 @@ def get_args():
 
     return parser.parse_args()
 
+
 def embedding_images(args):
     """
     Embed images and return embeddings
     Args:
         args: arguments
-        
+
     Returns:
         embeddings: embeddings
     """
@@ -38,8 +40,12 @@ def embedding_images(args):
 
     model = model_loader.load_model(args.model_path)
     processor = model_loader.load_processor()
-    
-    image_paths = [os.path.join(args.image_dir_path, image_path) for image_path in os.listdir(args.image_dir_path) if not image_path.startswith(".")]
+
+    image_paths = [
+        os.path.join(args.image_dir_path, image_path)
+        for image_path in os.listdir(args.image_dir_path)
+        if not image_path.startswith(".")
+    ]
     embeddings = []
 
     for image_path in tqdm(image_paths):
@@ -53,6 +59,7 @@ def embedding_images(args):
             continue
 
     return embeddings, image_paths
+
 
 def main(args):
     embeddings, image_paths = embedding_images(args)
