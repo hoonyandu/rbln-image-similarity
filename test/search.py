@@ -17,8 +17,8 @@ def get_args():
     parser.add_argument("--username", type=str, default="admin")
     parser.add_argument("--password", type=str, default="MyStr0ng!Password123")
 
-    parser.add_argument("--index-path", type=str, default="data/vector.index")
-    parser.add_argument("--image-prefix", type=str, default="https://img2.joongna.com/media/original/")
+    parser.add_argument("--index-path", type=str)
+    parser.add_argument("--image-prefix", type=str)
     parser.add_argument("--index-name", type=str, default="product-image-vector")
     
     return parser.parse_args()
