@@ -3,8 +3,7 @@ import argparse
 from __init__ import *
 from tqdm import tqdm
 
-from src.presentations.download import (download_csv_from_s3,
-                                        download_image_from_cdn)
+from src.presentations.download import download_csv_from_s3, download_image_from_cdn
 
 
 def get_args():
