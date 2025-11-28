@@ -1,5 +1,6 @@
 import logging
 
+
 def setup_logger(name: str = None) -> logging.Logger:
     """
     Setup logger
@@ -18,13 +19,16 @@ def setup_logger(name: str = None) -> logging.Logger:
     logger.setLevel(logging.INFO)
 
     # 핸들러 추가
-    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    formatter = logging.Formatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
     handler = logging.StreamHandler()
     handler.setFormatter(formatter)
-    
+
     logger.addHandler(handler)
 
     return logger
+
 
 def get_logger(name: str = None) -> logging.Logger:
     """
@@ -37,8 +41,9 @@ def get_logger(name: str = None) -> logging.Logger:
     """
     logger = logging.getLogger(name)
     logger = logger if logger.handlers else setup_logger(name)
-    
+
     return logger
+
 
 def set_log_level(logger: logging.Logger, level: int) -> None:
     """
