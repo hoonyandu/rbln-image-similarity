@@ -15,7 +15,17 @@ class OpenSearchClient(SearchClient):
         OpenSearchClient
     """
 
-    def __init__(self, host, port, timeout, response_timeout, use_ssl, verify_certs, username=None, password=None) -> None:
+    def __init__(
+        self,
+        host,
+        port,
+        timeout,
+        response_timeout,
+        use_ssl,
+        verify_certs,
+        username=None,
+        password=None,
+    ) -> None:
         """
         OpenSearch 클라이언트 초기화
         Args:
@@ -27,7 +37,7 @@ class OpenSearchClient(SearchClient):
             OpenSearchClient
         """
         self.logger = get_logger(__name__)
-        
+
         # 인증 정보 설정
         auth = None
         if username and password:
@@ -42,9 +52,10 @@ class OpenSearchClient(SearchClient):
             verify_certs=verify_certs,
             ssl_show_warn=False,  # self-signed 인증서 경고 억제
             connection_class=RequestsHttpConnection,
-        )   
-        self.logger.info(f"OpenSearchClient initialized with host: {host}, port: {port}, use_ssl: {use_ssl}, auth: {'Yes' if auth else 'No'}")
-
+        )
+        self.logger.info(
+            f"OpenSearchClient initialized with host: {host}, port: {port}, use_ssl: {use_ssl}, auth: {'Yes' if auth else 'No'}"
+        )
 
     def get_cluster_info(self) -> Dict[str, Any]:
         """

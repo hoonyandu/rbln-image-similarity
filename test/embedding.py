@@ -4,8 +4,10 @@ from __init__ import *
 from PIL import Image
 from tqdm import tqdm
 
-from src.infrastructure.model_loader import (RBLNAutoModelLoader,
-                                             RBLNCLIPVisionModelLoader)
+from src.infrastructure.model_loader import (
+    RBLNAutoModelLoader,
+    RBLNCLIPVisionModelLoader,
+)
 from src.presentations.embedding import generate_embeddings
 from src.presentations.index import create_faiss_index
 
