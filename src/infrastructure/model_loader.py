@@ -52,7 +52,7 @@ class RBLNAutoModelLoader(ModelLoader):
             # model_id: "Qwen/Qwen2.5-VL-7B-Instruct"
             # https://github.com/rebellions-sw/rbln-model-zoo/blob/main/huggingface/transformers/image-text-to-text/qwen2.5-vl/qwen2.5-vl-7b/compile.py
             model = RBLNAutoModelForVision2Seq.from_pretrained(
-                self.model_id, 
+                self.model_id,
                 export=True,
                 rbln_create_runtimes=False,
                 rbln_config={
