@@ -49,8 +49,19 @@ class RBLNAutoModelLoader(ModelLoader):
         if model_path:
             model = RBLNAutoModelForVision2Seq.from_model(model_path)
         else:
+            # model_id: "Qwen/Qwen2.5-VL-7B-Instruct"
+            # https://github.com/rebellions-sw/rbln-model-zoo/blob/main/huggingface/transformers/image-text-to-text/qwen2.5-vl/qwen2.5-vl-7b/compile.py
             model = RBLNAutoModelForVision2Seq.from_pretrained(
-                self.model_id, export=True
+                self.model_id,
+                export=True,
+                rbln_create_runtimes=False,
+                rbln_config={
+                    "visual": {
+                        "max_seq_lens": 6400,
+                        "device": 0,
+                    },
+                    "max_seq_len": 32_768,
+                },
             )
             model.save_pretrained(self.model_id)
 
