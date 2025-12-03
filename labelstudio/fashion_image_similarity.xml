@@ -1,0 +1,211 @@
+<View>
+    <!-- 기본 정보 표시 -->
+    <View style="padding: 20px; background-color: #fafbfc; border-radius: 8px; margin-bottom: 20px;">
+        <Header value="게시물 정보" size="3"/>
+        <Text name="article_info" value="$product_seq: $product_seq"/>
+    </View>
+    
+    <!-- 이미지 표시 (큰 크기로 표시) -->
+    <View style="width: 50%; overflow-x: auto; overflow-y: visible; max-width: none;">
+        <Image name="image_display" 
+                value="$image_uri" 
+                style="width: 300px !important;
+                        height: auto !important;
+                        max-width: none !important;
+                        max-height: none !important;
+                        object-fit: contain !important;
+                        display: block !important;"/>
+    </View>
+    
+    <!-- 정답  color 라벨링 -->
+    <View style="margin-bottom: 20px;">
+        <Header value="정답 Color"/>
+        <Choices name="actual_color_label" toName="article_info" required="true" choice="multiple" showInline="true">
+            <Choice value="black" style="background-color: #000000; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="white" style="background-color: #ffffff; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="gray" style="background-color: #808080; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            
+            <View></View>
+            
+            <Choice value="red" style="background-color: #dd3333; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="orange" style="background-color: #dd9933; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="yellow" style="background-color: #eeee22; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="green" style="background-color: #81d742; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="blue" style="background-color: #1e73be; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="navy" style="background-color: #32049e; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="purple" style="background-color: #8224e3; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            
+            <View></View>
+            
+            <Choice value="보류" style="background-color: #ffe0b3; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+        </Choices>
+        <Header value="정답 기타 Color"/>
+        <TextArea name="actual_other_color" toName="article_info" label="actual_other_color" placeholder="색상 명..." rows="1" required="false" editable="true" showSubmitButton="true"/>
+    </View>
+    
+    <!-- 정답 스타일 라벨링 -->
+    <View style="margin-bottom: 20px;">
+        <Header value="정답 Style"/>
+        <Choices name="actual_style" toName="article_info" required="false" choice="multiple" showInline="true">
+            <Choice value="캐주얼"/>
+            <Choice value="스트릿"/>
+            <Choice value="미니멀"/>
+            <Choice value="걸리시"/>
+            <Choice value="스포티"/>
+            <Choice value="로맨틱"/>
+            <Choice value="클래식"/>
+            <Choice value="시크"/>
+            <Choice value="워크웨어"/>
+            <Choice value="시티보이"/>
+            <Choice value="고프코어"/>
+            <Choice value="레트로"/>
+            <Choice value="프레피"/>
+            <Choice value="리조트"/>
+            <Choice value="에스닉"/>
+        </Choices>
+        <Header value="정답 기타 Style"/>
+        <TextArea name="actual_other_style" toName="article_info" label="actual_other_style" placeholder="스타일 명..." rows="1" required="false" editable="true" showSubmitButton="true"/>
+    </View>
+    
+    
+    <!-- AI 예측 결과 -->
+    <!-- TOP 5 예측 결과 이미지 -->
+    <View style="padding: 5px; border-radius: 8px; margin-bottom: 8px;">
+        <Header value="top 5 유사 이미지 예측 결과" size="3"/>
+    </View>
+    
+    <View style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; width: 100%;">
+        <View>
+            <Header value="Top 1 Image" style="font-size: 14px; font-weight: bold; margin-top: 5px; margin-bottom: 5px;"/>
+            <Image name="top_1_image_display"
+                    value="$top_1_image_uri"
+                    style="width: 200px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                            max-height: none !important;
+                            object-fit: contain !important;
+                            display: block !important;"/>
+        </View>
+    
+        <View>
+            <Header value="Top 2 Image" style="font-size: 14px; font-weight: bold; margin-top: 5px; margin-bottom: 5px;"/>
+            <Image name="top_2_image_display" 
+                    value="$top_2_image_uri" 
+                    style="width: 200px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                            max-height: none !important;
+                            object-fit: contain !important;
+                            display: block !important;"/>
+        </View>
+    
+        <View>
+            <Header value="Top 3 Image" style="font-size: 14px; font-weight: bold; margin-bottom: 5px;"/>
+            <Image name="top_3_image_display" 
+                    value="$top_3_image_uri" 
+                    style="width: 200px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                            max-height: none !important;
+                            object-fit: contain !important;
+                            display: block !important;"/>
+        </View>
+    
+        <View>
+            <Header value="Top 4 Image" style="font-size: 14px; font-weight: bold; margin-bottom: 5px;"/>
+            <Image name="top_4_image_display" 
+                    value="$top_4_image_uri" 
+                    style="width: 200px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                            max-height: none !important;
+                            object-fit: contain !important;
+                            display: block !important;"/>
+        </View>
+    
+        <View>
+            <Header value="Top 5 Image" style="font-size: 14px; font-weight: bold; margin-bottom: 5px;"/>
+            <Image name="top_5_image_display" 
+                    value="$top_5_image_uri" 
+                    style="width: 200px !important;
+                            height: auto !important;
+                            max-width: none !important;
+                            max-height: none !important;
+                            object-fit: contain !important;
+                            display: block !important;"/>
+        </View>
+    </View>
+    
+    <!-- AI 예측 결과 라벨링 -->
+    <View style="margin-bottom: 20px;">
+        <Header value="유사도 예측 Color Rank"/>
+        <Choices name="pred_top_color_rank" toName="article_info" required="false" choice="single-radio" showInline="true">
+            <Choice alias="0" value="top 1 이미지"/>
+            <Choice alias="1" value="top 2 이미지"/>
+            <Choice alias="2" value="top 3 이미지"/>
+            <Choice alias="3" value="top 4 이미지"/>
+            <Choice alias="4" value="top 5 이미지"/>
+        </Choices>
+    </View>
+    
+    <View style="margin-bottom: 20px;">
+        <Header value="유사도 예측 Color"/>
+        <Choices name="pred_color_label" toName="article_info" required="false" choice="multiple" showInline="true">
+
+            <Choice value="black" style="background-color: #000000; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="white" style="background-color: #ffffff; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="gray" style="background-color: #808080; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+
+            <View></View>
+
+            <Choice value="red" style="background-color: #dd3333; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="orange" style="background-color: #dd9933; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="yellow" style="background-color: #eeee22; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="green" style="background-color: #81d742; color: black; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="blue" style="background-color: #1e73be; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="navy" style="background-color: #32049e; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            <Choice value="purple" style="background-color: #8224e3; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+            
+            <View></View>
+            <Choice value="보류" style="background-color: #ffe0b3; color: white; padding: 5px 5px; margin: 5px; border-radius:6px; font-weight: bold;"/>
+        </Choices>
+    
+        <Header value="예측 기타 Color"/>
+        <TextArea name="pred_other_color" toName="article_info" label="pred_other_color" placeholder="색상 명..." rows="1" required="false" editable="true" showSubmitButton="true"/>
+    </View>
+    
+    <!-- 예측 스타일 라벨링 -->
+    <View style="margin-bottom: 20px;">
+        <Header value="유사도 예측 Style Rank"/>
+        <Choices name="pred_top_style_rank" toName="article_info" required="false" choice="single-radio" showInline="true">
+            <Choice alias="0" value="top 1 이미지"/>
+            <Choice alias="1" value="top 2 이미지"/>
+            <Choice alias="2" value="top 3 이미지"/>
+            <Choice alias="3" value="top 4 이미지"/>
+            <Choice alias="4" value="top 5 이미지"/>
+        </Choices>
+    </View>
+    
+    <View style="margin-bottom: 20px;">
+        <Header value="예측 Style"/>
+        <Choices name="pred_style" toName="article_info" required="false" choice="multiple" showInline="true">
+            <Choice value="캐주얼"/>
+            <Choice value="스트릿"/>
+            <Choice value="미니멀"/>
+            <Choice value="걸리시"/>
+            <Choice value="스포티"/>
+            <Choice value="로맨틱"/>
+            <Choice value="클래식"/>
+            <Choice value="시크"/>
+            <Choice value="워크웨어"/>
+            <Choice value="시티보이"/>
+            <Choice value="고프코어"/>
+            <Choice value="레트로"/>
+            <Choice value="프레피"/>
+            <Choice value="리조트"/>
+            <Choice value="에스닉"/>
+        </Choices>
+        <Header value="예측 기타 Style"/>
+        <TextArea name="pred_other_style" toName="article_info" label="pred_other_style" placeholder="스타일 명..." rows="1" required="false" editable="true" showSubmitButton="true"/>
+    </View>
+</View>
